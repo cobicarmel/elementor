@@ -4,8 +4,8 @@ var App;
 Marionette.TemplateCache.prototype.compileTemplate = function( rawTemplate, options ) {
 	options = {
 		evaluate: /<#([\s\S]+?)#>/g,
-		interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
-		escape: /\{\{([^\}]+?)\}\}(?!\})/g
+		interpolate: /\{\{\{([\s\S]+?)}}}/g,
+		escape: /\{\{([^}]+?)}}(?!})/g
 	};
 
 	return _.template( rawTemplate, options );
@@ -495,4 +495,6 @@ App = Marionette.Application.extend( {
 	}
 } );
 
-module.exports = ( window.elementor = new App() ).start();
+safeLoader.load( function() {
+	module.exports = ( window.elementor = new App() ).start();
+} );
