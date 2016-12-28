@@ -9,19 +9,19 @@ A field that represents radio buttons as a stylized component with icons accepts
 $this->add_control(
     'align',
     [
-        'label' => __( 'Alignment', 'elementor' ),
+        'label' => __( 'Alignment', 'your-plugin' ),
         'type' => Controls_Manager::CHOOSE,
         'options' => [
             'left'    => [
-                'title' => __( 'Left', 'elementor' ),
+                'title' => __( 'Left', 'your-plugin' ),
                 'icon' => 'fa fa-align-left',
             ],
             'center' => [
-                'title' => __( 'Center', 'elementor' ),
+                'title' => __( 'Center', 'your-plugin' ),
                 'icon' => 'fa fa-align-center',
             ],
             'right' => [
-                'title' => __( 'Right', 'elementor' ),
+                'title' => __( 'Right', 'your-plugin' ),
                 'icon' => 'fa fa-align-right',
             ],
         ],
@@ -35,18 +35,20 @@ $this->add_control(
 ```php
 $align = $this->get_settings( ‘align’ );
 
-echo '<div style="text-align:' . $align . '"></div>'
+echo '<div style="text-align:' . $align . '"> ... </div>'
 ```
 
 **JS** *(Under `_content_template()` method)*
 ```html
-<div style="text-align:{{ settings.align }}"></div>
+<div style="text-align:{{ settings.align }}"> ... </div>
 ```
 
 ##Arguments
 
 Argument           | Required   | Type         | Default                      | Description
-------------       | :--------: | :------:     | :--------------------------: | ---------------------------------------------
+------------       | :--------: | :------:     | ---------------------------  | ---------------------------------------------
 `label`            | yes        | *`string`*   |                              | The label of the control - displayed next to it
 `type`             | yes        | *`string`*   | `Controls_Manager::CHOOSE`   | The type of the control
-`default`          | no         | *`array`*    |                              | The default value can be set as an array of single image arrays
+`default`          | no         | *`string`*   |                              | The default value can be set as an array of single image arrays
+`options`          | yes        | *`array`*    |                              | An associative array of arrays: each option is described as an array with `icon` (a font icon class name) and `title` (a string of text that will be shown as a tooltip on hover)
+`toggle`           | no         | *`bool`*     | `true`                       | Whether to allow toggle the selected option (unset the selection)

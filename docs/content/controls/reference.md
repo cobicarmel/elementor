@@ -27,7 +27,7 @@ Elementor includes a wide array of settings controls. Let's get to know them.
 ####Design Controls
 
 * [Color](_color.md) - A Color-Picker control with an alpha slider. Includes a customizable color palette that can be preset by the user
-* [Image](_image.md) Dimensions - Choose the image size from a set of predefined sizes, or manually set the width and height
+* [Image Dimensions](_image-dimensions.md) - Choose the image size from a set of predefined sizes, or manually set the width and height
 * [Font](_font.md) - Choose a font from the Google font library.
 * [Icon](_icon.md) - Choose icon within the font-awesome library.
 * [Animation](_animation.md) - Choose between a set of cool animations.
