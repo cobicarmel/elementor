@@ -1,6 +1,6 @@
 #Raw-HTML
 
-Display HTML content in the panel. You can add custom `classes` to the control.
+Display HTML content in the panel. You can add custom `classes` to the control wrapper.
 
 *Returns:* `string`
 
@@ -11,27 +11,20 @@ $this->add_control(
   'html_msg',
   [
      'type'    => Controls_Manager::RAW_HTML,
+     'raw' => __( 'A very important message to show on the panel.', 'your-plugin' ),
+	 'classes' => 'your-class',
   ]
 );
 ```
 
 ##Usage
 
-**PHP** *(Under `render()` method)*
-```php
-...
-```
-
-**JS** *(Under `_content_template()` method)*
-```html
-...
-```
+The raw HTML gets outputted in the panel.
 
 ##Arguments
 
 Argument       | Required   | Type         | Default                      | Description
 ------------   | :--------: | :------:     | ---------------------------- | ---------------------------------------------
-`label`        | yes        | *`string`*   |                              | The label of the control - displayed next to it
 `type`         | yes        | *`string`*   | `Controls_Manager::TEXTAREA` | The type of the control
-`default`      | no         | *`string`*   |                              | The default value of the control
+`raw`          | no         | *`string`*   |                              | The default value of the control
 `classes`      | no         | *`string`*   |                              | CSS classes to add to the wrapper div of the control

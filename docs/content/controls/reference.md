@@ -13,7 +13,7 @@ Elementor includes a wide array of settings controls. Let's get to know them.
 * [WYSIWYG](_wysiwyg.md) - The WordPress text editor (TinyMCE)
 * [Code](_code.md) Editor - Ace Code editor - This includes syntax highlighting for HTML/CSS/JavaScript and other programming languages.
 
-####Additional controls
+####Settings controls
 
 * [Select](_select.md) - A classic select input 
 * [Checkbox](_checkbox.md) - Choose for Yes/No options
@@ -23,11 +23,10 @@ Elementor includes a wide array of settings controls. Let's get to know them.
 * [Slider](_slider.md) - A draggable scale to choose between a range of numeric values
 * [Date-Time](_date.md) picker - A field that opens up a calendar + hours
 * [Repeater](_repeater.md) - Repeater controls allow you to build repeatable blocks of fields. You can create for example a set of fields that will contain a checkbox and a textfield. The user will then be able to add “rows”, and each row will contain a checkbox and a textfield.
-* [Hidden](_hidden.md) - 
 
 ####Design Controls
 
-* [Color](_color.md) picker - a field to choose colors. This includes a customizable color palette that can be preset by the user
+* [Color](_color.md) - A Color-Picker control with an alpha slider. Includes a customizable color palette that can be preset by the user
 * [Image](_image.md) Dimensions - Choose the image size from a set of predefined sizes, or manually set the width and height
 * [Font](_font.md) - Choose a font from the Google font library.
 * [Icon](_icon.md) - Choose icon within the font-awesome library.
@@ -36,5 +35,5 @@ Elementor includes a wide array of settings controls. Let's get to know them.
 ####UI controls
 
 * [Heading](_heading.md) - Display the a heading in the panel
-* [Raw](_raw.md) HTML - Display HTML content in the panel
+* [Raw HTML](_raw-html.md) - Display HTML content in the panel
 * [Separator](_separator.md) - Display a separator between fields
