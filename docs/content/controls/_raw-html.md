@@ -19,7 +19,7 @@ $this->add_control(
 
 ##Usage
 
-The raw HTML gets outputted in the panel.
+The raw HTML gets automatically outputted in the panel.
 
 ##Arguments
 

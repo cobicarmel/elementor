@@ -2,7 +2,7 @@
 A Color-Picker control with an alpha slider. Includes a customizable color palette that can be preset by the user.
 Accepts a`scheme` argument that allows you to set a value from the active color scheme as the default value returned by the control.
  
-*Returns:* `string` - The key of the selected option.
+*Returns:* `string`
 
 ##Example
 
@@ -24,6 +24,7 @@ $this->add_control(
 ```
 
 ##Usage
+Most times you won’t have to manually retrieve the value of color controls since the selectors argument can cover most use-cases.
 
 **PHP** *(Under `render()` method)*
 ```php

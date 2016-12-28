@@ -13,7 +13,7 @@ The control also accepts a `range` argument that allows you to set the `min`, `m
 $this->add_control(
     'width',
     [
-        'label' => __( 'Width', 'elementor' ),
+        'label' => __( 'Width', 'your-plugin' ),
         'type' => Controls_Manager::SLIDER,
         'default' => [
             'size' => 1,
