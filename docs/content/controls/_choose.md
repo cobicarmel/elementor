@@ -1,5 +1,5 @@
 #Choose
-A field that represents radio buttons as a stylized component with icons accepts `options` as an associative array of arrays (array for each option).
+A component that represents radio buttons as a stylized group of buttons with icons. Accepts `options` as an associative array of arrays (array for each option).
  
 *Returns:* `string` - The key of the selected option.
 
@@ -52,3 +52,4 @@ Argument           | Required   | Type         | Default                      | 
 `default`          | no         | *`string`*   |                              | The default value can be set as an array of single image arrays
 `options`          | yes        | *`array`*    |                              | An associative array of arrays: each option is described as an array with `icon` (a font icon class name) and `title` (a string of text that will be shown as a tooltip on hover)
 `toggle`           | no         | *`bool`*     | `true`                       | Whether to allow toggle the selected option (unset the selection)
+`label_block`      | no         | *`bool`*     | `true`                       | Display the label above the control by setting to true
