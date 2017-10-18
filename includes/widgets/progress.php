@@ -76,7 +76,9 @@ class Widget_Progress extends Widget_Base {
 			[
 				'label' => __( 'Title', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'Enter your title', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Enter your title', 'elementor' ),
+				],
 				'default' => __( 'My Skill', 'elementor' ),
 				'label_block' => true,
 			]
@@ -126,7 +128,9 @@ class Widget_Progress extends Widget_Base {
 			[
 				'label' => __( 'Inner Text', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'e.g. Web Designer', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'e.g. Web Designer', 'elementor' ),
+				],
 				'default' => __( 'Web Designer', 'elementor' ),
 				'label_block' => true,
 			]

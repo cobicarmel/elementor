@@ -78,7 +78,9 @@ class Widget_Common extends Widget_Base {
 				'label' => __( 'Z-Index', 'elementor' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
-				'placeholder' => 0,
+				'attributes' => [
+					'placeholder' => 0,
+				],
 				'selectors' => [
 					'{{WRAPPER}}' => 'z-index: {{VALUE}};',
 				],
@@ -138,7 +140,9 @@ class Widget_Common extends Widget_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
 				'label_block' => true,
-				'title' => __( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				'attributes' => [
+					'title' => __( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				],
 			]
 		);
 
@@ -150,7 +154,9 @@ class Widget_Common extends Widget_Base {
 				'default' => '',
 				'prefix_class' => '',
 				'label_block' => true,
-				'title' => __( 'Add your custom class WITHOUT the dot. e.g: my-class', 'elementor' ),
+				'attributes' => [
+					'title' => __( 'Add your custom class WITHOUT the dot. e.g: my-class', 'elementor' ),
+				],
 			]
 		);
 

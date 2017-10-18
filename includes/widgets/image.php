@@ -110,8 +110,10 @@ class Widget_Image extends Widget_Base {
 				'label' => __( 'Caption', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
-				'placeholder' => __( 'Enter your caption about the image', 'elementor' ),
-				'title' => __( 'Input image caption here', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Enter your caption about the image', 'elementor' ),
+					'title' => __( 'Input image caption here', 'elementor' ),
+				],
 			]
 		);
 
@@ -134,7 +136,9 @@ class Widget_Image extends Widget_Base {
 			[
 				'label' => __( 'Link to', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'http://your-link.com', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'http://your-link.com', 'elementor' ),
+				],
 				'condition' => [
 					'link_to' => 'custom',
 				],

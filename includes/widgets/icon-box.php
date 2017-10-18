@@ -118,7 +118,9 @@ class Widget_Icon_Box extends Widget_Base {
 				'label' => __( 'Title & Description', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'This is the heading', 'elementor' ),
-				'placeholder' => __( 'Your Title', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Your Title', 'elementor' ),
+				],
 				'label_block' => true,
 			]
 		);
@@ -129,8 +131,9 @@ class Widget_Icon_Box extends Widget_Base {
 				'label' => '',
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
-				'placeholder' => __( 'Your Description', 'elementor' ),
-				'title' => __( 'Input icon text here', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Your Description', 'elementor' ),
+				],
 				'rows' => 10,
 				'separator' => 'none',
 				'show_label' => false,
@@ -142,7 +145,9 @@ class Widget_Icon_Box extends Widget_Base {
 			[
 				'label' => __( 'Link to', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'http://your-link.com', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'http://your-link.com', 'elementor' ),
+				],
 				'separator' => 'before',
 			]
 		);

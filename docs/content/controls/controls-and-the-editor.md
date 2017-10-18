@@ -76,7 +76,9 @@ $this->add_control(
   [
      'label' => __( 'Title', 'elementor' ),
      'type' => Controls_Manager::TEXT,
-     'placeholder' => __( 'Enter your title', 'elementor' ),
+     'attributes' => [
+	     'placeholder' => __( 'Enter your title', 'elementor' ),
+     ],
      'default' => __( 'This is a title', 'elementor' ),
   ]
 );
@@ -136,7 +138,9 @@ class Widget_Fake extends Widget_Base {
         [
            'label' => __( 'Title', 'elementor' ),
            'type' => Controls_Manager::TEXT,
-           'placeholder' => __( 'Enter your title', 'elementor' ),
+           'attributes' => [
+	           'placeholder' => __( 'Enter your title', 'elementor' ),
+           ],
            'default' => __( 'This is a title', 'elementor' ),
         ]
      );

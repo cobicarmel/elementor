@@ -89,7 +89,9 @@ class Widget_Shortcode extends Widget_Base {
 			[
 				'label' => __( 'Insert your shortcode here', 'elementor' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => '[gallery id="123" size="medium"]',
+				'attributes' => [
+					'placeholder' => '[gallery id="123" size="medium"]',
+				],
 				'default' => '',
 			]
 		);

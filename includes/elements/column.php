@@ -104,7 +104,9 @@ class Element_Column extends Element_Base {
 			[
 				'label' => __( 'Widgets Space', 'elementor' ) . ' (px)',
 				'type' => Controls_Manager::NUMBER,
-				'placeholder' => 20,
+				'attributes' => [
+					'placeholder' => 20,
+				],
 				'selectors' => [
 					'{{WRAPPER}} > .elementor-column-wrap > .elementor-widget-wrap > .elementor-widget:not(:last-child)' => 'margin-bottom: {{VALUE}}px',//Need the full path for exclude the inner section
 				],
@@ -561,7 +563,9 @@ class Element_Column extends Element_Base {
 				'label' => __( 'Z-Index', 'elementor' ),
 				'type' => Controls_Manager::NUMBER,
 				'min' => 0,
-				'placeholder' => 0,
+				'attributes' => [
+					'placeholder' => 0,
+				],
 				'selectors' => [
 					'{{WRAPPER}}' => 'z-index: {{VALUE}};',
 				],
@@ -621,7 +625,9 @@ class Element_Column extends Element_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => '',
 				'label_block' => true,
-				'title' => __( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				'attributes' => [
+					'title' => __( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				],
 			]
 		);
 
@@ -633,7 +639,9 @@ class Element_Column extends Element_Base {
 				'default' => '',
 				'prefix_class' => '',
 				'label_block' => true,
-				'title' => __( 'Add your custom class WITHOUT the dot. e.g: my-class', 'elementor' ),
+				'attributes' => [
+					'title' => __( 'Add your custom class WITHOUT the dot. e.g: my-class', 'elementor' ),
+				],
 			]
 		);
 

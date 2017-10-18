@@ -33,7 +33,7 @@ class Control_Textarea extends Base_Data_Control {
 		<div class="elementor-control-field">
 			<label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
 			<div class="elementor-control-input-wrapper">
-				<textarea id="<?php echo $control_uid; ?>" rows="{{ data.rows || 5 }}" data-setting="{{ data.name }}" placeholder="{{ data.placeholder }}"></textarea>
+				<textarea id="<?php echo $control_uid; ?>" rows="{{ data.rows || 5 }}" data-setting="{{ data.name }}" {{{ getRenderAttributesString() }}}></textarea>
 			</div>
 		</div>
 		<# if ( data.description ) { #>

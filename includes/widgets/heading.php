@@ -63,7 +63,9 @@ class Widget_Heading extends Widget_Base {
 			[
 				'label' => __( 'Title', 'elementor' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Enter your title', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Enter your title', 'elementor' ),
+				],
 				'default' => __( 'This is heading element', 'elementor' ),
 			]
 		);
@@ -73,7 +75,9 @@ class Widget_Heading extends Widget_Base {
 			[
 				'label' => __( 'Link', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => 'http://your-link.com',
+				'attributes' => [
+					'placeholder' => 'http://your-link.com',
+				],
 				'default' => [
 					'url' => '',
 				],

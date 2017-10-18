@@ -99,7 +99,9 @@ class Widget_Button extends Widget_Base {
 				'label' => __( 'Text', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Click me', 'elementor' ),
-				'placeholder' => __( 'Click me', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'Click me', 'elementor' ),
+				],
 			]
 		);
 
@@ -108,7 +110,9 @@ class Widget_Button extends Widget_Base {
 			[
 				'label' => __( 'Link', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => 'http://your-link.com',
+				'attributes' => [
+					'placeholder' => 'http://your-link.com',
+				],
 				'default' => [
 					'url' => '#',
 				],

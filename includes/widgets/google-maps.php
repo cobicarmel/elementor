@@ -64,7 +64,9 @@ class Widget_Google_Maps extends Widget_Base {
 			[
 				'label' => __( 'Address', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => $default_address,
+				'attributes' => [
+					'placeholder' => $default_address,
+				],
 				'default' => $default_address,
 				'label_block' => true,
 			]

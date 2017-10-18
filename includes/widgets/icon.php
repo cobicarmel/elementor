@@ -105,7 +105,9 @@ class Widget_Icon extends Widget_Base {
 			[
 				'label' => __( 'Link', 'elementor' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => 'http://your-link.com',
+				'attributes' => [
+					'placeholder' => 'http://your-link.com',
+				],
 			]
 		);
 

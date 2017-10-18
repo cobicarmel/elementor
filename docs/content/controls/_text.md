@@ -12,7 +12,9 @@ $this->add_control(
      'label'       => __( 'Title', 'your-plugin' ),
      'type'        => Controls_Manager::TEXT,
      'default'     => __( 'Default title text', 'your-plugin' ),
-     'placeholder' => __( 'Type your title text here', 'your-plugin' ),
+     'attributes' => [
+        'placeholder' => __( 'Type your title text here', 'your-plugin' ),
+    ],
   ]
 );
 ```

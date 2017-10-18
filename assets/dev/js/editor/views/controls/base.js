@@ -40,12 +40,23 @@ ControlBaseView = Marionette.CompositeView.extend( {
 		};
 
 		return {
-			data: _.extend( {}, this.model.toJSON(), controlData )
+			data: _.extend( {}, this.model.toJSON(), controlData ),
+			getRenderAttributesString: _.bind( this.getRenderAttributesString, this )
 		};
 	},
 
 	getTemplate: function() {
 		return Marionette.TemplateCache.get( '#tmpl-elementor-control-' + this.model.get( 'type' ) + '-content' );
+	},
+
+	getRenderAttributesString: function() {
+		var attributes = [];
+
+		jQuery.each( this.model.get( 'attributes' ), function( attributeKey ) {
+			attributes.push( attributeKey + '=' + '"' + this + '"' );
+		} );
+
+		return attributes.join( ' ' );
 	},
 
 	initialize: function( options ) {

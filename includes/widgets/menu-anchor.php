@@ -85,7 +85,9 @@ class Widget_Menu_Anchor extends Widget_Base {
 			[
 				'label' => __( 'The ID of Menu Anchor.', 'elementor' ),
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __( 'For Example: About', 'elementor' ),
+				'attributes' => [
+					'placeholder' => __( 'For Example: About', 'elementor' ),
+				],
 				'label_block' => true,
 			]
 		);

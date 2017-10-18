@@ -27,18 +27,20 @@ class Control_Text extends Base_Data_Control {
 		<div class="elementor-control-field">
 			<label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
 			<div class="elementor-control-input-wrapper">
-				<input id="<?php echo $control_uid; ?>" type="{{ data.input_type }}" class="tooltip-target" data-tooltip="{{ data.title }}" title="{{ data.title }}" data-setting="{{ data.name }}" placeholder="{{ data.placeholder }}" />
+				<input id="<?php echo $control_uid; ?>" class="tooltip-target" data-tooltip="{{ data.attributes.title }}" data-setting="{{ data.name }}" {{{ getRenderAttributesString() }}}/>
 			</div>
 		</div>
 		<# if ( data.description ) { #>
-		<div class="elementor-control-field-description">{{{ data.description }}}</div>
+			<div class="elementor-control-field-description">{{{ data.description }}}</div>
 		<# } #>
 		<?php
 	}
 
 	public function get_default_settings() {
 		return [
-			'input_type' => 'text',
+			'attributes' => [
+				'type' => 'text',
+			],
 		];
 	}
 }

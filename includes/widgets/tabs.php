@@ -106,7 +106,9 @@ class Widget_Tabs extends Widget_Base {
 						'label' => __( 'Title & Content', 'elementor' ),
 						'type' => Controls_Manager::TEXT,
 						'default' => __( 'Tab Title', 'elementor' ),
-						'placeholder' => __( 'Tab Title', 'elementor' ),
+						'attributes' => [
+							'placeholder' => __( 'Tab Title', 'elementor' ),
+						],
 						'label_block' => true,
 					],
 					[
