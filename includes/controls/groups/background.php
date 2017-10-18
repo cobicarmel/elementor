@@ -54,7 +54,6 @@ class Group_Control_Background extends Group_Control_Base {
 			'label' => _x( 'Color', 'Background Control', 'elementor' ),
 			'type' => Controls_Manager::COLOR,
 			'default' => '',
-			'title' => _x( 'Background Color', 'Background Control', 'elementor' ),
 			'selectors' => [
 				'{{SELECTOR}}' => 'background-color: {{VALUE}};',
 			],
@@ -170,7 +169,6 @@ class Group_Control_Background extends Group_Control_Base {
 		$fields['image'] = [
 			'label' => _x( 'Image', 'Background Control', 'elementor' ),
 			'type' => Controls_Manager::MEDIA,
-			'title' => _x( 'Background Image', 'Background Control', 'elementor' ),
 			'selectors' => [
 				'{{SELECTOR}}' => 'background-image: url("{{URL}}");',
 			],
