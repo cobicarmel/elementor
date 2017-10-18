@@ -7766,7 +7766,13 @@ ControlBaseView = Marionette.CompositeView.extend( {
 		var attributes = [];
 
 		jQuery.each( this.model.get( 'attributes' ), function( attributeKey ) {
-			attributes.push( attributeKey + '=' + '"' + this + '"' );
+			var parsedAttribute = this;
+
+			if ( ! jQuery.isNumeric( attributeKey ) ) {
+				parsedAttribute = attributeKey + '=' + '"' + this + '"';
+			}
+
+			attributes.push( parsedAttribute );
 		} );
 
 		return attributes.join( ' ' );
