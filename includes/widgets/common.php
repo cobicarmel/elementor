@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Common Widget
+ * Elementor common widget.
+ *
+ * Elementor base widget that givs you all the advanced options of the basic
+ * widget.
+ *
+ * @since 1.0.0
  */
 class Widget_Common extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve common widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Common extends Widget_Base {
 	}
 
 	/**
+	 * Show in panel.
+	 *
 	 * Whether to show the common widget in the panel or not.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return bool Whether to show the widget in the panel.
@@ -37,6 +48,7 @@ class Widget_Common extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {

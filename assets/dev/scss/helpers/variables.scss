@@ -14,6 +14,7 @@ $gray-light:    #D4D4D4;
 $gray-lighter:  #eceeef;
 $gray-lightest: #f7f7f7;
 $gray-mouse:    #CCD6DF;
+$gray-bg:       #e6e9ec;
 
 $blue:          #0275d8;
 $blue-flat:     #1b607f;
@@ -24,25 +25,25 @@ $orange:        #f0ad4e;
 $red:           #d9534f;
 $purple:		#9C7AC1;
 
-// Info
+// Info Alert
 $info:			#5bc0de;
 $info-text:		#31708f;
 $info-bg:		#d9edf7;
 $info-border:	darken($info-bg, 7%);
 
-// Success
+// Success Alert
 $success:		#5cb85c;
 $success-text:	#3c763d;
 $success-bg:	#dff0d8;
 $success-border:darken($success-bg, 7%);
 
-// Warning
+// Warning Alert
 $warning:		#f0ad4e;
 $warning-text:	#8a6d3b;
 $warning-bg:	#fcf8e3;
 $warning-border:darken($warning-bg, 7%);
 
-// Danger
+// Danger Alert
 $danger:		#d9534f;
 $danger-text:	#a94442;
 $danger-bg:		#f2dede;
@@ -71,12 +72,14 @@ $instagram:		#262626;
 $jsfiddle:		#487AA2;
 $linkedin:		#0077b5;
 $medium:		#00ab6b;
+$meetup:		#ec1c40;
 $odnoklassniki:	#F4731C;
 $pinterest:		#bd081c;
 $pocket:		#EF3F56;
 $print:			#aaaaaa;
 $product-hunt:	#da552f;
 $reddit:		#ff4500;
+$rss:			#f26522;
 $shopping-cart:	#4CAF50;
 $skype:			#00AFF0;
 $slideshare:	#0077b5;
@@ -100,6 +103,8 @@ $xing:			#026466;
 $yelp:			#af0606;
 $youtube:		#cd201f;
 
+// WordPress
+$wp-primary: #0085ba;
 
 // Editor colors
 $editor-darkest:#495157;
@@ -110,8 +115,8 @@ $editor-light: #a4afb7;
 $editor-lighter: #c2cbd2;
 $editor-lightest: #d5dadf;
 
-$editor-accent: #9b0a46;
-$editor-background: #e6e9ec;
+$editor-accent: #B7084E;
+$editor-background: $gray-bg;
 $editor-background-light: #f1f3f5;
 
 $editor-orange: #fcb92c;
@@ -172,7 +177,8 @@ $breakpoints: (
 	sm: 480px, // Mobile landscape
 	md: 768px, // Tablet
 	lg: 1025px, // Desktop
-	xl: 1440px // Largest devices
+	xl: 1440px, // Larger devices
+	xxl: 1600px // Largest devices
 );
 
 // Media Queries
@@ -184,3 +190,5 @@ $screen-md-max: map_get($breakpoints, lg) - 1;
 $screen-lg-min: map_get($breakpoints, lg);
 $screen-lg-max: map_get($breakpoints, xl) - 1;
 $screen-xl-min: map_get($breakpoints, xl);
+$screen-xl-max: map_get($breakpoints, xxl) - 1;
+$screen-xxl-min: map_get($breakpoints, xxl);

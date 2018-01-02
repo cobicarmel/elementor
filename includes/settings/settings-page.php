@@ -10,24 +10,51 @@ abstract class Settings_Page {
 
 	const PAGE_ID = '';
 
+	/**
+	 * @abstract
+	 * @since 1.5.0
+	 * @access protected
+	*/
 	abstract protected function create_tabs();
 
+	/**
+	 * @abstract
+	 * @since 1.5.0
+	 * @access protected
+	*/
 	abstract protected function get_page_title();
 
+	/**
+	 * @static
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final static function get_url() {
 		return admin_url( 'admin.php?page=' . static::PAGE_ID );
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public function __construct() {
 		add_action( 'admin_init', [ $this, 'register_settings_fields' ] );
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function get_tabs() {
 		$this->ensure_tabs();
 
 		return $this->tabs;
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function add_tab( $tab_id, array $tab_args = [] ) {
 		$this->ensure_tabs();
 
@@ -43,6 +70,10 @@ abstract class Settings_Page {
 		$this->tabs[ $tab_id ] = $tab_args;
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function add_section( $tab_id, $section_id, array $section_args = [] ) {
 		$this->ensure_tabs();
 
@@ -63,6 +94,10 @@ abstract class Settings_Page {
 		$this->tabs[ $tab_id ]['sections'][ $section_id ] = $section_args;
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function add_field( $tab_id, $section_id, $field_id, array $field_args ) {
 		$this->ensure_tabs();
 
@@ -84,12 +119,20 @@ abstract class Settings_Page {
 		$this->tabs[ $tab_id ]['sections'][ $section_id ]['fields'][ $field_id ] = $field_args;
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function add_fields( $tab_id, $section_id, array $fields ) {
 		foreach ( $fields as $field_id => $field ) {
 			$this->add_field( $tab_id, $section_id, $field_id, $field );
 		}
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public final function register_settings_fields() {
 		$controls_class_name = __NAMESPACE__ . '\Settings_Controls';
 
@@ -140,6 +183,10 @@ abstract class Settings_Page {
 		}
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access public
+	*/
 	public function display_settings_page() {
 		$tabs = $this->get_tabs();
 		?>
@@ -158,7 +205,7 @@ abstract class Settings_Page {
 						$active_class = ' nav-tab-active';
 					}
 
-					echo "<a id='elementor-settings-tab-$tab_id' class='nav-tab$active_class' href='#tab-$tab_id'>$tab[label]</a>";
+					echo "<a id='elementor-settings-tab-{$tab_id}' class='nav-tab{$active_class}' href='#tab-{$tab_id}'>{$tab['label']}</a>";
 				}
 				?>
 			</div>
@@ -177,13 +224,13 @@ abstract class Settings_Page {
 						$active_class = ' elementor-active';
 					}
 
-					echo "<div id='tab-$tab_id' class='elementor-settings-form-page$active_class'>";
+					echo "<div id='tab-{$tab_id}' class='elementor-settings-form-page{$active_class}'>";
 
 					foreach ( $tab['sections'] as $section_id => $section ) {
 						$full_section_id = 'elementor_' . $section_id . '_section';
 
 						if ( ! empty( $section['label'] ) ) {
-							echo "<h2>$section[label]</h2>";
+							echo "<h2>{$section['label']}</h2>";
 						}
 
 						if ( ! empty( $section['callback'] ) ) {
@@ -207,11 +254,28 @@ abstract class Settings_Page {
 		<?php
 	}
 
+	/**
+	 * @since 1.5.0
+	 * @access private
+	*/
 	private function ensure_tabs() {
 		if ( null === $this->tabs ) {
 			$this->tabs = $this->create_tabs();
 
-			do_action( 'elementor/admin/after_create_settings/' . static::PAGE_ID, $this );
+			$page_id = static::PAGE_ID;
+
+			/**
+			 * After create settings.
+			 *
+			 * Fires after the settings are created in Elementor admin page.
+			 *
+			 * The dynamic portion of the hook name, `$page_id`, refers to the current page ID.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param Settings_Page $this The settings page.
+			 */
+			do_action( "elementor/admin/after_create_settings/{$page_id}", $this );
 		}
 	}
 }

@@ -5,10 +5,18 @@ class Import_Images {
 
 	private $_replace_image_ids = [];
 
+	/**
+	 * @since 1.0.0
+	 * @access private
+	*/
 	private function _get_hash_image( $attachment_url ) {
 		return sha1( $attachment_url );
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @access private
+	*/
 	private function _return_saved_image( $attachment ) {
 		global $wpdb;
 
@@ -39,28 +47,20 @@ class Import_Images {
 		return false;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @access public
+	*/
 	public function import( $attachment ) {
 		$saved_image = $this->_return_saved_image( $attachment );
 		if ( $saved_image ) {
 			return $saved_image;
 		}
 
-		// Extract the file name and extension from the url
+		// Extract the file name and extension from the url.
 		$filename = basename( $attachment['url'] );
 
-		if ( function_exists( 'file_get_contents' ) ) {
-			$options = [
-				'http' => [
-					'user_agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux i686 on x86_64; rv:49.0) Gecko/20100101 Firefox/49.0',
-				],
-			];
-
-			$context = stream_context_create( $options );
-
-			$file_content = file_get_contents( $attachment['url'], false, $context );
-		} else {
-			$file_content = wp_remote_retrieve_body( wp_safe_remote_get( $attachment['url'] ) );
-		}
+		$file_content = wp_remote_retrieve_body( wp_safe_remote_get( $attachment['url'] ) );
 
 		if ( empty( $file_content ) ) {
 			return false;
@@ -68,7 +68,7 @@ class Import_Images {
 
 		$upload = wp_upload_bits(
 			$filename,
-			null,
+			'',
 			$file_content
 		);
 
@@ -101,6 +101,10 @@ class Import_Images {
 		return $new_attachment;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @access public
+	*/
 	public function __construct() {
 		if ( ! function_exists( 'WP_Filesystem' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';

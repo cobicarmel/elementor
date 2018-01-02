@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Google Maps Widget
+ * Elementor google maps widget.
+ *
+ * Elementor widget that displays an embeded google map.
+ *
+ * @since 1.0.0
  */
 class Widget_Google_Maps extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve google maps widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Google_Maps extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve google maps widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Google_Maps extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve google maps widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -48,6 +61,7 @@ class Widget_Google_Maps extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -138,6 +152,7 @@ class Widget_Google_Maps extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -153,7 +168,7 @@ class Widget_Google_Maps extends Widget_Base {
 
 		printf(
 			'<div class="elementor-custom-embed"><iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=%s&amp;t=m&amp;z=%d&amp;output=embed&amp;iwloc=near"></iframe></div>',
-			urlencode( $settings['address'] ),
+			rawurlencode( $settings['address'] ),
 			absint( $settings['zoom']['size'] )
 		);
 	}
@@ -163,6 +178,7 @@ class Widget_Google_Maps extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {}

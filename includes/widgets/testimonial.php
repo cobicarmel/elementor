@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Testimonial Widget
+ * Elementor testimonial widget.
+ *
+ * Elementor widget that displays customer testimonials that show social proof.
+ *
+ * @since 1.0.0
  */
 class Widget_Testimonial extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve testimonial widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Testimonial extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve testimonial widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Testimonial extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve testimonial widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +57,13 @@ class Widget_Testimonial extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the testimonial widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +77,7 @@ class Widget_Testimonial extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -331,6 +348,7 @@ class Widget_Testimonial extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -366,8 +384,12 @@ class Widget_Testimonial extends Widget_Base {
 		?>
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 
-			<?php if ( $has_content ) : ?>
-				<div class="elementor-testimonial-content"><?php echo $settings['testimonial_content']; ?></div>
+			<?php if ( $has_content ) :
+				$this->add_render_attribute( 'testimonial_content', 'class', 'elementor-testimonial-content' );
+
+				$this->add_inline_editing_attributes( 'testimonial_content' );
+				?>
+				<div <?php echo $this->get_render_attribute_string( 'testimonial_content' );  ?>><?php echo $settings['testimonial_content']; ?></div>
 			<?php endif; ?>
 
 			<?php if ( $has_image || $has_name || $has_job ) : ?>
@@ -381,12 +403,20 @@ class Widget_Testimonial extends Widget_Base {
 
 					<?php if ( $has_name || $has_job ) : ?>
 					<div class="elementor-testimonial-details">
-						<?php if ( $has_name ) : ?>
-							<div class="elementor-testimonial-name"><?php echo $settings['testimonial_name']; ?></div>
+						<?php if ( $has_name ) :
+							$this->add_render_attribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
+
+							$this->add_inline_editing_attributes( 'testimonial_name', 'none' );
+							?>
+							<div <?php echo $this->get_render_attribute_string( 'testimonial_name' );  ?>><?php echo $settings['testimonial_name']; ?></div>
 						<?php endif; ?>
 
-						<?php if ( $has_job ) : ?>
-							<div class="elementor-testimonial-job"><?php echo $settings['testimonial_job']; ?></div>
+						<?php if ( $has_job ) :
+							$this->add_render_attribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
+
+							$this->add_inline_editing_attributes( 'testimonial_job', 'none' );
+							?>
+							<div <?php echo $this->get_render_attribute_string( 'testimonial_job' );  ?>><?php echo $settings['testimonial_job']; ?></div>
 						<?php endif; ?>
 					</div>
 					<?php endif; ?>
@@ -402,6 +432,7 @@ class Widget_Testimonial extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
@@ -417,13 +448,13 @@ class Widget_Testimonial extends Widget_Base {
 		var testimonial_image_position = settings.testimonial_image_position ? ' elementor-testimonial-image-position-' + settings.testimonial_image_position : '';
 		#>
 		<div class="elementor-testimonial-wrapper{{ testimonial_alignment }}">
+			<# if ( '' !== settings.testimonial_content ) {
+				view.addRenderAttribute( 'testimonial_content', 'class', 'elementor-testimonial-content' );
 
-			<# if ( '' !== settings.testimonial_content ) { #>
-				<div class="elementor-testimonial-content">
-					{{{ settings.testimonial_content }}}
-				</div>
+				view.addInlineEditingAttributes( 'testimonial_content' );
+				#>
+				<div {{{ view.getRenderAttributeString( 'testimonial_content' ) }}}>{{{ settings.testimonial_content }}}</div>
 			<# } #>
-
 			<div class="elementor-testimonial-meta{{ hasImage }}{{ testimonial_image_position }}">
 				<div class="elementor-testimonial-meta-inner">
 					<# if ( imageUrl ) { #>
@@ -433,19 +464,21 @@ class Widget_Testimonial extends Widget_Base {
 					<# } #>
 
 					<div class="elementor-testimonial-details">
+						<# if ( '' !== settings.testimonial_name ) {
+							view.addRenderAttribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
 
-						<# if ( '' !== settings.testimonial_name ) { #>
-						<div class="elementor-testimonial-name">
-							{{{ settings.testimonial_name }}}
-						</div>
+							view.addInlineEditingAttributes( 'testimonial_name', 'none' );
+							#>
+							<div {{{ view.getRenderAttributeString( 'testimonial_name' ) }}}>{{{ settings.testimonial_name }}}</div>
 						<# } #>
 
-						<# if ( '' !== settings.testimonial_job ) { #>
-						<div class="elementor-testimonial-job">
-							{{{ settings.testimonial_job }}}
-						</div>
-						<# } #>
+						<# if ( '' !== settings.testimonial_job ) {
+							view.addRenderAttribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
 
+							view.addInlineEditingAttributes( 'testimonial_job', 'none' );
+							#>
+							<div {{{ view.getRenderAttributeString( 'testimonial_job' ) }}}>{{{ settings.testimonial_job }}}</div>
+						<# } #>
 					</div>
 				</div>
 			</div>

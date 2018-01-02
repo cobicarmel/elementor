@@ -56,7 +56,9 @@
 						$wpTitle.val( 'Elementor #' + $( '#post_ID' ).val() );
 					}
 
-					wp.autosave.server.triggerSave();
+					if ( wp.autosave ) {
+						wp.autosave.server.triggerSave();
+					}
 
 					self.animateLoader();
 
@@ -485,12 +487,14 @@ var Module = function() {
 		var callbacks = events[ eventName ];
 
 		if ( ! callbacks ) {
-			return;
+			return self;
 		}
 
 		$.each( callbacks, function( index, callback ) {
 			callback.apply( self, params );
 		} );
+
+		return self;
 	};
 
 	init();

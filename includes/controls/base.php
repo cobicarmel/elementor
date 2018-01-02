@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Base control.
+ * Elementor base control.
  * A base control for creating controls in the panel. Each control accepts all
  * the params listed below.
  * @since 1.0.0
@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  *                            field. Default is empty.
  * @param array $attributes   Optional. Some attributes to print on the field
  *                            input.
- * @param mixed  $default     Optional. The field default value.
  * @param string $description Optional. The description that appears below the
  *                            field. Default is empty.
+ * @param mixed  $default     Optional. The field default value.
  * @param string $separator   Optional. Set the position of the control separator.
  *                            Available values are 'default', 'before', 'after'
  *                            and 'none'. 'default' will position the separator
@@ -68,6 +68,7 @@ abstract class Base_Control {
 	 * Get the list of all the available features. Currently Elementor uses only
 	 * the `UI` feature.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 * @static
 	 *
@@ -80,6 +81,7 @@ abstract class Base_Control {
 	/**
 	 * Retrieve control type.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 * @abstract
 	 */
@@ -90,6 +92,7 @@ abstract class Base_Control {
 	 *
 	 * Initializing the control base class.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 */
 	public function __construct() {
@@ -103,6 +106,7 @@ abstract class Base_Control {
 	 *
 	 * Used to register and enqueue custom scripts and styles used by the control.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 */
 	public function enqueue() {}
@@ -153,12 +157,13 @@ abstract class Base_Control {
 	/**
 	 * Control content template.
 	 *
-	 * Used to generate the control HTML in the editor using Underscore (JS)
+	 * Used to generate the control HTML in the editor using Underscore JS
 	 * template. The variables for the class are available using `data` JS
 	 * object.
 	 *
-	 * The content template is wrapped by Base_Control::print_template().
+	 * Note that the content template is wrapped by Base_Control::print_template().
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 * @abstract
 	 */
@@ -167,7 +172,7 @@ abstract class Base_Control {
 	/**
 	 * Print control template.
 	 *
-	 * Used to generate the control HTML in the editor using Underscore (JS)
+	 * Used to generate the control HTML in the editor using Underscore JS
 	 * template. The variables for the class are available using `data` JS
 	 * object.
 	 *
@@ -190,6 +195,7 @@ abstract class Base_Control {
 	 * Get the default settings of the control. Used to return the default
 	 * settings while initializing the control.
 	 *
+	 * @since 1.5.0
 	 * @access protected
 	 *
 	 * @return array Control default settings.

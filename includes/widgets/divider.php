@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Divider Widget
+ * Elementor divider widget.
+ *
+ * Elementor widget that displays a line that divides different elements in the
+ * page.
+ *
+ * @since 1.0.0
  */
 class Widget_Divider extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve divider widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Divider extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve divider widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +44,11 @@ class Widget_Divider extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve divider widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -48,6 +62,7 @@ class Widget_Divider extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -202,6 +217,7 @@ class Widget_Divider extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -217,6 +233,7 @@ class Widget_Divider extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {

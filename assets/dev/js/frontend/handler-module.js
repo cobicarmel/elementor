@@ -6,16 +6,30 @@ HandlerModule = ViewModule.extend( {
 
 	onElementChange: null,
 
+	onEditSettingsChange: null,
+
 	onGeneralSettingsChange: null,
 
 	onPageSettingsChange: null,
 
+	isEdit: null,
+
 	__construct: function( settings ) {
 		this.$element  = settings.$element;
 
-		if ( elementorFrontend.isEditMode() ) {
+		this.isEdit = this.$element.hasClass( 'elementor-element-edit-mode' );
+
+		if ( this.isEdit ) {
 			this.addEditorListener();
 		}
+	},
+
+	findElement: function( selector ) {
+		var $mainElement = this.$element;
+
+		return $mainElement.find( selector ).filter( function() {
+			return jQuery( this ).closest( '.elementor-element' ).is( $mainElement );
+		} );
 	},
 
 	getUniqueHandlerID: function( cid, $element ) {
@@ -53,6 +67,16 @@ HandlerModule = ViewModule.extend( {
 			}, elementor.channels.editor );
 		}
 
+		if ( self.onEditSettingsChange ) {
+			elementorFrontend.addListenerOnce( uniqueHandlerID, 'change:editSettings', function( changedModel, view ) {
+				if ( view.model.cid !== self.getModelCID() ) {
+					return;
+				}
+
+				self.onEditSettingsChange( Object.keys( changedModel.changed )[0] );
+			}, elementor.channels.editor );
+		}
+
 		[ 'page', 'general' ].forEach( function( settingsType ) {
 			var listenerMethodName = 'on' + settingsType.charAt( 0 ).toUpperCase() + settingsType.slice( 1 ) + 'SettingsChange';
 
@@ -80,7 +104,7 @@ HandlerModule = ViewModule.extend( {
 		var elementSettings = {},
 			modelCID = this.getModelCID();
 
-		if ( elementorFrontend.isEditMode() && modelCID ) {
+		if ( this.isEdit && modelCID ) {
 			var settings = elementorFrontend.config.elements.data[ modelCID ],
 				settingsKeys = elementorFrontend.config.elements.keys[ settings.attributes.widgetType || settings.attributes.elType ];
 
@@ -97,13 +121,13 @@ HandlerModule = ViewModule.extend( {
 	},
 
 	getEditSettings: function( setting ) {
-		if ( ! elementorFrontend.isEditMode() ) {
-			return {};
+		var attributes = {};
+
+		if ( this.isEdit ) {
+			attributes = elementorFrontend.config.elements.editSettings[ this.getModelCID() ].attributes;
 		}
 
-		var editSettings = elementorFrontend.config.elements.editSettings[ this.getModelCID() ];
-
-		return this.getItems( editSettings.attributes, setting );
+		return this.getItems( attributes, setting );
 	}
 } );
 

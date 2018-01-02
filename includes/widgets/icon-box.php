@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Icon Box Widget
+ * Elementor icon box widget.
+ *
+ * Elementor widget that displays an icon, a headline and a text.
+ *
+ * @since 1.0.0
  */
 class Widget_Icon_Box extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve icon box widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Icon_Box extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve icon box widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Icon_Box extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve icon box widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +57,13 @@ class Widget_Icon_Box extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the icon box widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +77,7 @@ class Widget_Icon_Box extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -538,6 +555,7 @@ class Widget_Icon_Box extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -564,6 +582,12 @@ class Widget_Icon_Box extends Widget_Base {
 
 		$icon_attributes = $this->get_render_attribute_string( 'icon' );
 		$link_attributes = $this->get_render_attribute_string( 'link' );
+
+		$this->add_render_attribute( 'description_text', 'class', 'elementor-icon-box-description' );
+
+		$this->add_inline_editing_attributes( 'title_text', 'none' );
+
+		$this->add_inline_editing_attributes( 'description_text' );
 		?>
         <div class="elementor-icon-box-wrapper">
             <div class="elementor-icon-box-icon">
@@ -573,9 +597,9 @@ class Widget_Icon_Box extends Widget_Base {
             </div>
             <div class="elementor-icon-box-content">
                 <<?php echo $settings['title_size']; ?> class="elementor-icon-box-title">
-                    <<?php echo implode( ' ', [ $icon_tag, $link_attributes ] ); ?>><?php echo $settings['title_text']; ?></<?php echo $icon_tag; ?>>
+                    <<?php echo implode( ' ', [ $icon_tag, $link_attributes ] ); ?> <?php echo $this->get_render_attribute_string( 'title_text' ); ?>><?php echo $settings['title_text']; ?></<?php echo $icon_tag; ?>>
                 </<?php echo $settings['title_size']; ?>>
-                <p class="elementor-icon-box-description"><?php echo $settings['description_text']; ?></p>
+                <p <?php echo $this->get_render_attribute_string( 'description_text' ); ?>><?php echo $settings['description_text']; ?></p>
             </div>
         </div>
 		<?php
@@ -586,12 +610,20 @@ class Widget_Icon_Box extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
 		?>
-        <# var link = settings.link.url ? 'href="' + settings.link.url + '"' : '',
-			iconTag = link ? 'a' : 'span'; #>
+        <#
+        var link = settings.link.url ? 'href="' + settings.link.url + '"' : '',
+			iconTag = link ? 'a' : 'span';
+
+        view.addRenderAttribute( 'description_text', 'class', 'elementor-icon-box-description' );
+
+        view.addInlineEditingAttributes( 'title_text', 'none' );
+        view.addInlineEditingAttributes( 'description_text' );
+        #>
         <div class="elementor-icon-box-wrapper">
             <div class="elementor-icon-box-icon">
                 <{{{ iconTag + ' ' + link }}} class="elementor-icon elementor-animation-{{ settings.hover_animation }}">
@@ -600,9 +632,9 @@ class Widget_Icon_Box extends Widget_Base {
             </div>
             <div class="elementor-icon-box-content">
                 <{{{ settings.title_size }}} class="elementor-icon-box-title">
-                    <{{{ iconTag + ' ' + link }}}>{{{ settings.title_text }}}</{{{ iconTag }}}>
+                    <{{{ iconTag + ' ' + link }}} {{{ view.getRenderAttributeString( 'title_text' ) }}}>{{{ settings.title_text }}}</{{{ iconTag }}}>
                 </{{{ settings.title_size }}}>
-                <p class="elementor-icon-box-description">{{{ settings.description_text }}}</p>
+                <p {{{ view.getRenderAttributeString( 'description_text' ) }}}>{{{ settings.description_text }}}</p>
             </div>
         </div>
 		<?php

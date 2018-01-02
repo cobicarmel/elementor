@@ -50,6 +50,8 @@ abstract class Manager {
 	}
 
 	final public function ajax_save_settings() {
+		Plugin::$instance->editor->verify_ajax_nonce();
+
 		$data = json_decode( stripslashes( $_POST['data'] ), true );
 
 		$id = 0;
@@ -62,7 +64,24 @@ abstract class Manager {
 
 		$this->save_settings( $data, $id );
 
-		wp_send_json_success();
+		$settings_name = $this->get_name();
+
+		$success_response_data = [];
+
+		/**
+		 * Settings success response data.
+		 *
+		 * Filters the success response data when saving settings using ajax.
+		 *
+		 * The dynamic portion of the hook name, `$settings_name`, refers to the settings name.
+		 *
+		 * @param array $success_response_data Success response data.
+		 * @param int   $id                    Settings ID.
+		 * @param array $data                  Settings data.
+		 */
+		$success_response_data = apply_filters( "elementor/{$settings_name}/settings/success_response_data", $success_response_data, $id, $data );
+
+		wp_send_json_success( $success_response_data );
 	}
 
 	final public function save_settings( array $settings, $id = 0 ) {
@@ -101,7 +120,7 @@ abstract class Manager {
 	}
 
 	public function on_elementor_init() {
-		Plugin::$instance->editor->add_editor_template( $this->get_editor_template() );
+		Plugin::$instance->editor->add_editor_template( $this->get_editor_template(), 'text' );
 	}
 
 	/**

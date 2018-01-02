@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Spacer Widget
+ * Elementor spacer widget.
+ *
+ * Elementor widget that inserts a space that divides various elements.
+ *
+ * @since 1.0.0
  */
 class Widget_Spacer extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve spacer widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Spacer extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve spacer widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Spacer extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve spacer widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +57,13 @@ class Widget_Spacer extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the spacer widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +77,7 @@ class Widget_Spacer extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -108,6 +125,7 @@ class Widget_Spacer extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -123,6 +141,7 @@ class Widget_Spacer extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {

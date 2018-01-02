@@ -4,10 +4,10 @@
 		position: absolute;
 		z-index: 1;
 		top: 0;
-		left: 0;
+		@include end(7px);
 		background-color: #fff;
 		border: solid #fff;
-		border-width: 0 17px 0 12px;
+		border-width: 0 10px 0 5px;
 		padding-top: 10px;
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 
@@ -25,6 +25,19 @@
 		box-sizing: content-box;
 	}
 
+	.color-alpha {
+		$margin: 2px;
+
+		width: calc( 100% - #{$margin} * 2 );
+		height: calc( 100% - #{$margin} * 2 );
+		margin: $margin;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: 2px;
+		box-sizing: border-box;
+	}
+
 	.iris-picker {
 		border: none;
 	}
@@ -36,6 +49,7 @@
 	height: 25px;
 	transition: border .5s;
 	padding: 0;
+	background-color: #fafafa;
 	border-radius: 3px;
 	border: 1px solid $editor-lightest;
 
@@ -67,7 +81,7 @@
 		height: 26px;
 		width: 48px;
 		padding: 0;
-		background-color: #d5dadf;
+		background-color: $editor-lightest;
 		border-radius: 0 3px 3px 0;
 		margin: 0;
 	}
@@ -96,12 +110,20 @@
 	}
 }
 
+.iris-square-value {
+	transition: none;
+}
+
 .elementor-control {
 
 	.wp-picker-container {
 
 		&:not(.wp-picker-active) {
 			float: $end;
+
+			.wp-color-result {
+				margin: 0;
+			}
 		}
 
 		&.wp-picker-active {

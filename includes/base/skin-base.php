@@ -6,14 +6,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Skin Base
+ * Skin Base.
  *
- * Abstract class to register new skins to Elementor widgets. Skins allow you to
- * add new templates, set custom controls and more.
+ * An abstract class to register new skins for Elementor widgets. Skins allows
+ * you to add new templates, set custom controls and more.
  *
- * To add skins to widgets use the `_register_skins()` method and register new
- * skins using `add_skin()` method.
+ * To register new skins for your widget use the `add_skin()` method inside the
+ * widget's `_register_skins()` method.
  *
+ * @since 1.0.0
  * @abstract
  */
 abstract class Skin_Base {
@@ -35,6 +36,8 @@ abstract class Skin_Base {
 	 * Initializing the skin base class by setting parent widget and registering
 	 * controls actions.
 	 *
+	 * @since 1.0.0
+	 * @access public
 	 * @param Widget_Base $parent
 	 */
 	public function __construct( Widget_Base $parent ) {
@@ -44,16 +47,22 @@ abstract class Skin_Base {
 	}
 
 	/**
-	 * Retrieve skin ID.
+	 * Get skin ID.
 	 *
+	 * Retrieve the skin ID.
+	 *
+	 * @since 1.0.0
 	 * @access public
 	 * @abstract
 	 */
 	abstract public function get_id();
 
 	/**
-	 * Retrieve skin title.
+	 * Get skin title.
 	 *
+	 * Retrieve the skin title.
+	 *
+	 * @since 1.0.0
 	 * @access public
 	 * @abstract
 	 */
@@ -64,6 +73,7 @@ abstract class Skin_Base {
 	 *
 	 * Generates the final HTML on the frontend.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 * @abstract
 	 */
@@ -74,6 +84,7 @@ abstract class Skin_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @deprecated
@@ -90,17 +101,19 @@ abstract class Skin_Base {
 	 * Example usage:
 	 * `add_action( 'elementor/element/{widget_id}/{section_id}/before_section_end', [ $this, 'register_controls' ] );`
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls_actions() {}
 
 	/**
-	 * Retrieve skin control ID.
+	 * Get skin control ID.
 	 *
-	 * Used to get the skin control ID. Note that skin controls have special
-	 * prefix to destiguish them from regular controls, and from controls in
-	 * other skins.
+	 * Retrieve the skin control ID. Note that skin controls have special prefix
+	 * to destiguish them from regular controls, and from controls in other
+	 * skins.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 *
 	 * @param string $control_base_id Control base ID.
@@ -113,10 +126,11 @@ abstract class Skin_Base {
 	}
 
 	/**
-	 * Retrieve skin settings.
+	 * Get skin settings.
 	 *
-	 * Get all the skin settings or, when requested, a specific setting.
+	 * Retrieve all the skin settings or, when requested, a specific setting.
 	 *
+	 * @since 1.0.0
 	 * @TODO: rename to get_setting() and create backward compitability.
 	 *
 	 * @access public
@@ -135,6 +149,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to add a new section of controls to the skin.
 	 *
+	 * @since 1.3.0
 	 * @access public
 	 *
 	 * @param string $id   Section ID.
@@ -150,6 +165,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to close an existing open skin controls section.
 	 *
+	 * @since 1.3.0
 	 * @access public
 	 */
 	public function end_controls_section() {
@@ -161,6 +177,7 @@ abstract class Skin_Base {
 	 *
 	 * Register a single control to the allow the user to set/update skin data.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param string $id   Control ID.
@@ -178,14 +195,18 @@ abstract class Skin_Base {
 	 *
 	 * Change the value of an existing skin control.
 	 *
+	 * @since 1.3.0
+	 * @since 1.8.1 New `$options` parameter added.
+	 *
 	 * @access public
 	 *
-	 * @param string $id   Control ID.
-	 * @param array  $args Control arguments. Only the new fields you want to update.
+	 * @param string $id      Control ID.
+	 * @param array  $args    Control arguments. Only the new fields you want to update.
+	 * @param array  $options Optional. Some additional options.
 	 */
-	public function update_control( $id, $args ) {
+	public function update_control( $id, $args, array $options = [] ) {
 		$args['condition']['_skin'] = $this->get_id();
-		$this->parent->update_control( $this->get_control_id( $id ), $args );
+		$this->parent->update_control( $this->get_control_id( $id ), $args, $options );
 	}
 
 	/**
@@ -193,6 +214,7 @@ abstract class Skin_Base {
 	 *
 	 * Unregister an existing skin control.
 	 *
+	 * @since 1.3.0
 	 * @access public
 	 *
 	 * @param string $id Control ID.
@@ -206,6 +228,7 @@ abstract class Skin_Base {
 	 *
 	 * Register a set of controls to allow editing based on user screen size.
 	 *
+	 * @since 1.0.5
 	 * @access public
 	 *
 	 * @param string $id   Responsive control ID.
@@ -221,6 +244,7 @@ abstract class Skin_Base {
 	 *
 	 * Change the value of an existing responsive skin control.
 	 *
+	 * @since 1.3.5
 	 * @access public
 	 *
 	 * @param string $id   Responsive control ID.
@@ -235,6 +259,7 @@ abstract class Skin_Base {
 	 *
 	 * Unregister an existing skin responsive control.
 	 *
+	 * @since 1.3.5
 	 * @access public
 	 *
 	 * @param string $id Responsive control ID.
@@ -248,6 +273,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to add a new tab inside a group of tabs.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 *
 	 * @param string $id   Control ID.
@@ -263,6 +289,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to close an existing open controls tab.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 */
 	public function end_controls_tab() {
@@ -274,6 +301,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to add a new set of tabs inside a section.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 *
 	 * @param string $id Control ID.
@@ -288,6 +316,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to close an existing open controls tabs.
 	 *
+	 * @since 1.5.0
 	 * @access public
 	 */
 	public function end_controls_tabs() {
@@ -300,6 +329,7 @@ abstract class Skin_Base {
 	 * Register a set of related controls grouped together as a single unified
 	 * control.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param string $group_name Group control name.
@@ -316,6 +346,7 @@ abstract class Skin_Base {
 	 *
 	 * Used to define the parent widget of the skin.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param Widget_Base $parent Parent widget.

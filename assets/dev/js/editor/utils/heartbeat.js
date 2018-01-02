@@ -13,7 +13,7 @@ heartbeat = {
 			return modal;
 		};
 
-		Backbone.$( document ).on( {
+		jQuery( document ).on( {
 			'heartbeat-send': function( event, data ) {
 				data.elementor_post_lock = {
 					post_ID: elementor.config.post_id
@@ -21,8 +21,10 @@ heartbeat = {
 			},
 			'heartbeat-tick': function( event, response ) {
 				if ( response.locked_user ) {
-					if ( elementor.isEditorChanged() ) {
-						elementor.saveEditor( { status: 'autosave' } );
+					if ( elementor.saver.isEditorChanged() ) {
+						elementor.saver.saveEditor( {
+							status: 'autosave'
+						} );
 					}
 
 					heartbeat.showLockMessage( response.locked_user );
@@ -30,7 +32,20 @@ heartbeat = {
 					heartbeat.getModal().hide();
 				}
 
-				elementor.config.nonce = response.elementor_nonce;
+				elementor.config.nonce = response.elementorNonce;
+			},
+			'heartbeat-tick.wp-refresh-nonces': function( event, response ) {
+				var nonces = response['elementor-refresh-nonces'];
+
+				if ( nonces ) {
+					if ( nonces.heartbeatNonce ) {
+						elementor.config.nonce = nonces.elementorNonce;
+					}
+
+					if ( nonces.heartbeatNonce ) {
+						window.heartbeatSettings.nonce = nonces.heartbeatNonce;
+					}
+				}
 			}
 		} );
 
@@ -40,7 +55,7 @@ heartbeat = {
 	},
 
 	initModal: function() {
-		var modal = elementor.dialogsManager.createWidget( 'options', {
+		var modal = elementor.dialogsManager.createWidget( 'lightbox', {
 			headerMessage: elementor.translate( 'take_over' )
 		} );
 

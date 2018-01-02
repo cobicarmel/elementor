@@ -19,6 +19,19 @@ RevisionsManager = function() {
 		} );
 
 		revisions.reset( revisionsToKeep );
+
+		if ( 'current' === data.last_revision.type ) {
+			// Move current to top
+			var current = revisions.findWhere( {
+				id: elementor.config.post_id
+			} );
+
+			if ( current ) {
+				revisions.remove( current );
+			}
+
+			revisions.add( current, { at: 0 } );
+		}
 	};
 
 	var attachEvents = function() {
@@ -51,7 +64,31 @@ RevisionsManager = function() {
 		elementor.hotKeys.addHotKeyHandler( DOWN_ARROW_KEY, 'revisionNavigation', navigationHandler );
 	};
 
+	this.setEditorData = function( data ) {
+		var collection = elementor.getRegion( 'sections' ).currentView.collection;
+
+		collection.reset( data );
+	};
+
+	this.getRevisionDataAsync = function( id, options ) {
+		_.extend( options, {
+			data: {
+				id: id
+			}
+		} );
+
+		return elementor.ajax.send( 'get_revision_data', options );
+	};
+
 	this.addRevision = function( revisionData ) {
+		var existedModel = revisions.findWhere( {
+			id: revisionData.id
+		} );
+
+		if ( existedModel ) {
+			revisions.remove( existedModel );
+		}
+
 		revisions.add( revisionData, { at: 0 } );
 	};
 

@@ -58,7 +58,7 @@ helpers = {
 
 		if ( undefined !== container[ elementType ] ) {
 
-			if ( Backbone.$.isPlainObject( container[ elementType ] ) ) {
+			if ( jQuery.isPlainObject( container[ elementType ] ) ) {
 				return Object.keys( container[ elementType ] );
 			}
 
@@ -71,7 +71,7 @@ helpers = {
 				continue;
 			}
 
-			if ( ! Backbone.$.isPlainObject( container[ type ] ) ) {
+			if ( ! jQuery.isPlainObject( container[ type ] ) ) {
 				continue;
 			}
 
@@ -86,15 +86,7 @@ helpers = {
 	},
 
 	getUniqueID: function() {
-		var id;
-
-		// TODO: Check conflict models
-		//while ( true ) {
-			id = Math.random().toString( 36 ).substr( 2, 7 );
-			//if ( 1 > $( 'li.item-id-' + id ).length ) {
-				return id;
-			//}
-		//}
+		return Math.random().toString( 16 ).substr( 2, 7 );
 	},
 
 	stringReplaceAll: function( string, replaces ) {
@@ -106,18 +98,21 @@ helpers = {
 	},
 
 	isActiveControl: function( controlModel, values ) {
-		var condition;
+		var condition,
+			conditions;
 
 		// TODO: Better way to get this?
 		if ( _.isFunction( controlModel.get ) ) {
 			condition = controlModel.get( 'condition' );
+			conditions = controlModel.get( 'conditions' );
 		} else {
 			condition = controlModel.condition;
+			conditions = controlModel.conditions;
 		}
 
-		// Repeater items conditions
-		if ( controlModel.conditions ) {
-			return elementor.conditions.check( controlModel.conditions, values );
+		// Multiple conditions with relations.
+		if ( conditions ) {
+			return elementor.conditions.check( conditions, values );
 		}
 
 		if ( _.isEmpty( condition ) ) {
@@ -169,7 +164,7 @@ helpers = {
 				return;
 			}
 
-			Backbone.$( this )
+			jQuery( this )
 				.data( 'backup-pointer-events', currentPointerEvents )
 				.css( 'pointer-events', 'none' );
 		} );
@@ -177,7 +172,7 @@ helpers = {
 
 	enableElementEvents: function( $element ) {
 		$element.each( function() {
-			var $this = Backbone.$( this ),
+			var $this = jQuery( this ),
 				backupPointerEvents = $this.data( 'backup-pointer-events' );
 
 			if ( undefined === backupPointerEvents ) {

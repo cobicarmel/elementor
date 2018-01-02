@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Icon Widget
+ * Elementor icon widget.
+ *
+ * Elementor widget that displays an icon from over 600+ icons.
+ *
+ * @since 1.0.0
  */
 class Widget_Icon extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve icon widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Icon extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve icon widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Icon extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve icon widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -48,6 +61,7 @@ class Widget_Icon extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -316,6 +330,7 @@ class Widget_Icon extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -362,6 +377,7 @@ class Widget_Icon extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {

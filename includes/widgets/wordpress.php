@@ -6,7 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WordPress Widget
+ * Elementor WordPress widget.
+ *
+ * Elementor widget that displays all the WordPress widgets.
+ *
+ * @since 1.0.0
  */
 class Widget_WordPress extends Widget_Base {
 
@@ -31,17 +35,21 @@ class Widget_WordPress extends Widget_Base {
 	/**
 	 * Whether the widget is a Pojo widget or not.
 	 *
+	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @return \Pojo_Widget_Base
+	 * @return bool
 	 */
 	private function _is_pojo_widget() {
 		return $this->get_widget_instance() instanceof \Pojo_Widget_Base;
 	}
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve WordPress/Pojo widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -51,8 +59,11 @@ class Widget_WordPress extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve WordPress/Pojo widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -62,10 +73,13 @@ class Widget_WordPress extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the WordPress/Pojo widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories. Returns either a WordPress category or Pojo category.
@@ -80,8 +94,11 @@ class Widget_WordPress extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve WordPress/Pojo widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon. Returns either a WordPress icon or Pojo icon.
@@ -98,6 +115,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Used to determine whether the reload preview is required.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return bool Whether the reload preview is required.
@@ -111,6 +129,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Returns the WordPress widget form, to be used in Elementor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget form.
@@ -133,6 +152,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Returns an instance of WordPress widget, to be used in Elementor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return \WP_Widget
@@ -157,7 +177,8 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Returns the WordPress widget settings, to be used in Elementor.
 	 *
-	 * @access public
+	 * @access protected
+	 * @since 1.0.0
 	 *
 	 * @return \WP_Widget
 	 */
@@ -176,6 +197,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -195,10 +217,11 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
-		$empty_widget_args = [
+		$default_widget_args = [
 			'widget_id' => $this->get_name(),
 			'before_widget' => '',
 			'after_widget' => '',
@@ -206,9 +229,19 @@ class Widget_WordPress extends Widget_Base {
 			'after_title' => '</h5>',
 		];
 
-		$empty_widget_args = apply_filters( 'elementor/widgets/wordpress/widget_args', $empty_widget_args, $this ); // WPCS: spelling ok.
+		/**
+		 * WordPress widget args.
+		 *
+		 * Filters the WordPress widget arguments when they are rendered in Elementor panel.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array            $default_widget_args Default widget arguments.
+		 * @param Widget_WordPress $this                The WordPress widget.
+		 */
+		$default_widget_args = apply_filters( 'elementor/widgets/wordpress/widget_args', $default_widget_args, $this ); // WPCS: spelling ok.
 
-		$this->get_widget_instance()->widget( $empty_widget_args, $this->get_settings( 'wp' ) );
+		$this->get_widget_instance()->widget( $default_widget_args, $this->get_settings( 'wp' ) );
 	}
 
 	/**
@@ -216,6 +249,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function content_template() {}
@@ -225,6 +259,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Used to run WordPress widget constructor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param array $data Widget data. Default is an empty array.
@@ -241,6 +276,7 @@ class Widget_WordPress extends Widget_Base {
 	 *
 	 * Override the default render behavior, don't render widget content.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @param array $instance Widget instance. Default is empty array.

@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Image Carousel Widget
+ * Elementor image carousel widget.
+ *
+ * Elementor widget that displays a set of images in a rotating carousel or
+ * slider.
+ *
+ * @since 1.0.0
  */
 class Widget_Image_Carousel extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve image carousel widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Image_Carousel extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve image carousel widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +44,11 @@ class Widget_Image_Carousel extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve image carousel widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +58,13 @@ class Widget_Image_Carousel extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the image carousel widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +78,7 @@ class Widget_Image_Carousel extends Widget_Base {
 	 *
 	 * Used to set scripts dependencies required to run the widget.
 	 *
+	 * @since 1.3.0
 	 * @access public
 	 *
 	 * @return array Widget scripts dependencies.
@@ -74,6 +92,7 @@ class Widget_Image_Carousel extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -614,6 +633,7 @@ class Widget_Image_Carousel extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -700,6 +720,7 @@ class Widget_Image_Carousel extends Widget_Base {
 	/**
 	 * Retrieve image carousel link URL.
 	 *
+	 * @since 1.0.0
 	 * @access private
 	 *
 	 * @param array $attachment
@@ -728,6 +749,7 @@ class Widget_Image_Carousel extends Widget_Base {
 	/**
 	 * Retrieve image carousel caption.
 	 *
+	 * @since 1.2.0
 	 * @access private
 	 *
 	 * @param array $attachment

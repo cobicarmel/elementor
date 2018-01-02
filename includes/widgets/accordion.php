@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Accordion Widget
+ * Elementor accordion widget.
+ *
+ * Elementor widget that displays a collapsible display of content in an
+ * accordion style, showing only one item at a time.
+ *
+ * @since 1.0.0
  */
 class Widget_Accordion extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve accordion widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Accordion extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve accordion widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +44,11 @@ class Widget_Accordion extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve accordion widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +58,13 @@ class Widget_Accordion extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the accordion widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +78,7 @@ class Widget_Accordion extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -154,8 +172,8 @@ class Widget_Accordion extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item' => 'border-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-content' => 'border-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-wrapper .elementor-accordion-title.active > span' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-wrapper .elementor-tab-title.elementor-active > span' => 'border-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -167,8 +185,8 @@ class Widget_Accordion extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item' => 'border-color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-content' => 'border-top-color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-wrapper .elementor-accordion-title.active > span' => 'border-bottom-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-top-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-wrapper .elementor-tab-title.elementor-active > span' => 'border-bottom-color: {{VALUE}};',
 				],
 			]
 		);
@@ -188,7 +206,7 @@ class Widget_Accordion extends Widget_Base {
 				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-title' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-title' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -199,7 +217,7 @@ class Widget_Accordion extends Widget_Base {
 				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -214,7 +232,7 @@ class Widget_Accordion extends Widget_Base {
 				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-title.active' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -227,7 +245,7 @@ class Widget_Accordion extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-accordion-title',
+				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-title',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
@@ -247,7 +265,7 @@ class Widget_Accordion extends Widget_Base {
 				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-content' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -258,7 +276,7 @@ class Widget_Accordion extends Widget_Base {
 				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-content' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -271,7 +289,7 @@ class Widget_Accordion extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'content_typography',
-				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-accordion-content',
+				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-content',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -284,27 +302,38 @@ class Widget_Accordion extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
 		$settings = $this->get_settings();
+
+		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
 		<div class="elementor-accordion" role="tablist">
-			<?php $counter = 1; ?>
-			<?php foreach ( $settings['tabs'] as $item ) : ?>
+			<?php foreach ( $settings['tabs'] as $index => $item ) :
+				$tab_count = $index + 1;
+
+				$tab_content_setting_key = $this->get_repeater_setting_key( 'tab_content', 'tabs', $index );
+
+				$this->add_render_attribute( $tab_content_setting_key, [
+					'class' => [ 'elementor-tab-content', 'elementor-clearfix' ],
+					'data-tab' => $tab_count,
+					'role' => 'tabpanel',
+				] );
+
+				$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
+				?>
 				<div class="elementor-accordion-item">
-					<div class="elementor-accordion-title" data-section="<?php echo $counter; ?>" role="tab">
+					<div class="elementor-tab-title" tabindex="<?php echo $id_int . $tab_count; ?>" data-tab="<?php echo $tab_count; ?>" role="tab">
 						<span class="elementor-accordion-icon elementor-accordion-icon-<?php echo $settings['icon_align']; ?>">
 							<i class="fa"></i>
 						</span>
 						<?php echo $item['tab_title']; ?>
 					</div>
-					<div class="elementor-accordion-content elementor-clearfix" data-section="<?php echo $counter; ?>" role="tabpanel"><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
 				</div>
-			<?php
-				$counter++;
-			endforeach;
-			?>
+			<?php endforeach; ?>
 		</div>
 		<?php
 	}
@@ -314,26 +343,38 @@ class Widget_Accordion extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
 		?>
-		<div class="elementor-accordion" data-active-section="{{ editSettings.activeItemIndex ? editSettings.activeItemIndex : 0 }}" role="tablist">
+		<div class="elementor-accordion" role="tablist">
 			<#
 			if ( settings.tabs ) {
-				var counter = 1;
-				_.each( settings.tabs, function( item ) { #>
+				var tabindex = view.getIDInt().toString().substr( 0, 3 );
+
+				_.each( settings.tabs, function( item, index ) {
+					var tabCount = index + 1,
+						tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs', index );
+
+					view.addRenderAttribute( tabContentKey, {
+						'class': [ 'elementor-tab-content', 'elementor-clearfix' ],
+						'data-tab': tabCount,
+						'role': 'tabpanel'
+					} );
+
+					view.addInlineEditingAttributes( tabContentKey, 'advanced' );
+					#>
 					<div class="elementor-accordion-item">
-						<div class="elementor-accordion-title" data-section="{{ counter }}" role="tab">
+						<div class="elementor-tab-title" tabindex="{{ tabindex + tabCount }}" data-tab="{{ tabCount }}" role="tab">
 							<span class="elementor-accordion-icon elementor-accordion-icon-{{ settings.icon_align }}">
 								<i class="fa"></i>
 							</span>
 							{{{ item.tab_title }}}
 						</div>
-						<div class="elementor-accordion-content elementor-clearfix" data-section="{{ counter }}" role="tabpanel">{{{ item.tab_content }}}</div>
+						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
 					</div>
 				<#
-					counter++;
 				} );
 			} #>
 		</div>

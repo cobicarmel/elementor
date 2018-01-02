@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Tabs Widget
+ * Elementor tabs widget.
+ *
+ * Elementor widget that displays vertical or horizontal tabs with different
+ * pieces of content.
+ *
+ * @since 1.0.0
  */
 class Widget_Tabs extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve tabs widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Tabs extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve tabs widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +44,11 @@ class Widget_Tabs extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve tabs widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +58,13 @@ class Widget_Tabs extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the tabs widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +78,7 @@ class Widget_Tabs extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -192,7 +210,7 @@ class Widget_Tabs extends Widget_Base {
 				'label' => __( 'Border Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-mobile-title, {{WRAPPER}} .elementor-tab-desktop-title.active, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-tabs-content-wrapper' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-tab-mobile-title, {{WRAPPER}} .elementor-tab-desktop-title.elementor-active, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-tabs-content-wrapper' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -203,7 +221,7 @@ class Widget_Tabs extends Widget_Base {
 				'label' => __( 'Background Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-desktop-title.active' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-tab-desktop-title.elementor-active' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .elementor-tabs-content-wrapper' => 'background-color: {{VALUE}};',
 				],
 			]
@@ -239,7 +257,7 @@ class Widget_Tabs extends Widget_Base {
 				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title.active' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -298,31 +316,61 @@ class Widget_Tabs extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
 		$tabs = $this->get_settings( 'tabs' );
+
+		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
 		<div class="elementor-tabs" role="tablist">
-			<?php $counter = 1; ?>
-			<div class="elementor-tabs-wrapper" role="tab">
-				<?php foreach ( $tabs as $item ) : ?>
-					<div class="elementor-tab-title elementor-tab-desktop-title" data-tab="<?php echo $counter; ?>"><?php echo $item['tab_title']; ?></div>
-				<?php
-					$counter++;
-				endforeach;
-				?>
-			</div>
+			<div class="elementor-tabs-wrapper">
+				<?php foreach ( $tabs as $index => $item ) :
+					$tab_count = $index + 1;
 
-			<?php $counter = 1; ?>
-			<div class="elementor-tabs-content-wrapper" role="tabpanel">
-				<?php foreach ( $tabs as $item ) : ?>
-					<div class="elementor-tab-title elementor-tab-mobile-title" data-tab="<?php echo $counter; ?>"><?php echo $item['tab_title']; ?></div>
-					<div class="elementor-tab-content elementor-clearfix" data-tab="<?php echo $counter; ?>"><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
-				<?php
-					$counter++;
-				endforeach;
-				?>
+					$tab_title_setting_key = $this->get_repeater_setting_key( 'tab_title', 'tabs', $index );
+
+					$this->add_render_attribute( $tab_title_setting_key, [
+						'id' => 'elementor-tab-title-' . $id_int . $tab_count,
+						'class' => [ 'elementor-tab-title', 'elementor-tab-desktop-title' ],
+						'data-tab' => $tab_count,
+						'tabindex' => $id_int . $tab_count,
+						'role' => 'tab',
+						'aria-controls' => 'elementor-tab-content-' . $id_int . $tab_count,
+					] );
+					?>
+					<div <?php echo $this->get_render_attribute_string( $tab_title_setting_key ); ?>><?php echo $item['tab_title']; ?></div>
+				<?php endforeach; ?>
+			</div>
+			<div class="elementor-tabs-content-wrapper">
+				<?php foreach ( $tabs as $index => $item ) :
+					$tab_count = $index + 1;
+
+					$tab_content_setting_key = $this->get_repeater_setting_key( 'tab_content', 'tabs', $index );
+
+					$tab_title_mobile_setting_key = $this->get_repeater_setting_key( 'tab_title_mobile', 'tabs', $tab_count );
+
+					$this->add_render_attribute( $tab_content_setting_key, [
+						'id' => 'elementor-tab-content-' . $id_int . $tab_count,
+						'class' => [ 'elementor-tab-content', 'elementor-clearfix' ],
+						'data-tab' => $tab_count,
+						'role' => 'tabpanel',
+						'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
+					] );
+
+					$this->add_render_attribute( $tab_title_mobile_setting_key, [
+						'class' => [ 'elementor-tab-title', 'elementor-tab-mobile-title' ],
+						'tabindex' => $id_int . $tab_count,
+						'data-tab' => $tab_count,
+						'role' => 'tab',
+					] );
+
+					$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
+					?>
+					<div <?php echo $this->get_render_attribute_string( $tab_title_mobile_setting_key ); ?>><?php echo $item['tab_title']; ?></div>
+					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 		<?php
@@ -333,32 +381,43 @@ class Widget_Tabs extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
 		?>
-		<div class="elementor-tabs" data-active-tab="{{ editSettings.activeItemIndex ? editSettings.activeItemIndex : 0 }}" role="tablist">
+		<div class="elementor-tabs" role="tablist">
 			<#
 			if ( settings.tabs ) {
-				var counter = 1; #>
-				<div class="elementor-tabs-wrapper" role="tab">
+				var tabindex = view.getIDInt().toString().substr( 0, 3 );
+				#>
+				<div class="elementor-tabs-wrapper">
 					<#
-					_.each( settings.tabs, function( item ) { #>
-						<div class="elementor-tab-title elementor-tab-desktop-title" data-tab="{{ counter }}">{{{ item.tab_title }}}</div>
-					<#
-						counter++;
-					} ); #>
+					_.each( settings.tabs, function( item, index ) {
+						var tabCount = index + 1;
+						#>
+						<div id="elementor-tab-title-{{ tabindex + tabCount }}" class="elementor-tab-title elementor-tab-desktop-title" tabindex="{{ tabindex + tabCount }}" data-tab="{{ tabCount }}" role="tab" aria-controls="elementor-tab-content-{{ tabindex + tabCount }}">{{{ item.tab_title }}}</div>
+					<# } ); #>
 				</div>
+				<div class="elementor-tabs-content-wrapper">
+					<#
+					_.each( settings.tabs, function( item, index ) {
+						var tabCount = index + 1,
+							tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs',index );
 
-				<# counter = 1; #>
-				<div class="elementor-tabs-content-wrapper" role="tabpanel">
-					<#
-					_.each( settings.tabs, function( item ) { #>
-						<div class="elementor-tab-title elementor-tab-mobile-title" data-tab="{{ counter }}">{{{ item.tab_title }}}</div>
-						<div class="elementor-tab-content elementor-clearfix elementor-repeater-item-{{ item._id }}" data-tab="{{ counter }}">{{{ item.tab_content }}}</div>
-					<#
-					counter++;
-					} ); #>
+						view.addRenderAttribute( tabContentKey, {
+							'id': 'elementor-tab-content-' + tabindex + tabCount,
+							'class': [ 'elementor-tab-content', 'elementor-clearfix', 'elementor-repeater-item-' + item._id ],
+							'data-tab': tabCount,
+							'role' : 'tabpanel',
+							'aria-labelledby' : 'elementor-tab-title-' + tabindex + tabCount
+						} );
+
+						view.addInlineEditingAttributes( tabContentKey, 'advanced' );
+						#>
+						<div class="elementor-tab-title elementor-tab-mobile-title" data-tab="{{ tabCount }}" role="tab">{{{ item.tab_title }}}</div>
+						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
+					<# } ); #>
 				</div>
 			<# } #>
 		</div>

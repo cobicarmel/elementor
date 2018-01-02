@@ -6,13 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Toggle Widget
+ * Elementor toggle widget.
+ *
+ * Elementor widget that displays a collapsible display of content in an toggle
+ * style, allowing the user to open multiple items.
+ *
+ * @since 1.0.0
  */
 class Widget_Toggle extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve toggle widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +30,11 @@ class Widget_Toggle extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve toggle widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +44,11 @@ class Widget_Toggle extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve toggle widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -44,10 +58,13 @@ class Widget_Toggle extends Widget_Base {
 	}
 
 	/**
+	 * Get widget categories.
+	 *
 	 * Retrieve the list of categories the toggle widget belongs to.
 	 *
 	 * Used to determine where to display the widget in the editor.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -61,6 +78,7 @@ class Widget_Toggle extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -140,8 +158,8 @@ class Widget_Toggle extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-title' => 'border-width: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-content' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'border-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -152,8 +170,8 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Border Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-content' => 'border-bottom-color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-title' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'border-bottom-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -173,7 +191,7 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-title' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -184,7 +202,7 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -199,7 +217,7 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Active Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-title.active' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -212,7 +230,7 @@ class Widget_Toggle extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-toggle-title',
+				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-tab-title',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
@@ -232,7 +250,7 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Background', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-content' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -243,7 +261,7 @@ class Widget_Toggle extends Widget_Base {
 				'label' => __( 'Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-toggle .elementor-toggle-content' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-toggle .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
 					'type' => Scheme_Color::get_type(),
@@ -256,7 +274,7 @@ class Widget_Toggle extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'content_typography',
-				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-toggle-content',
+				'selector' => '{{WRAPPER}} .elementor-toggle .elementor-tab-content',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
@@ -269,25 +287,36 @@ class Widget_Toggle extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
 		$tabs = $this->get_settings( 'tabs' );
+
+		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
 		<div class="elementor-toggle">
-			<?php $counter = 1; ?>
-			<?php foreach ( $tabs as $item ) : ?>
-				<div class="elementor-toggle-title" data-tab="<?php echo $counter; ?>">
+			<?php foreach ( $tabs as $index => $item ) :
+				$tab_count = $index + 1;
+
+				$tab_content_setting_key = $this->get_repeater_setting_key( 'tab_content', 'tabs', $index );
+
+				$this->add_render_attribute( $tab_content_setting_key, [
+					'class' => [ 'elementor-tab-content', 'elementor-clearfix' ],
+					'data-tab' => $tab_count,
+					'role' => 'tabpanel',
+				] );
+
+				$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
+				?>
+				<div class="elementor-tab-title" tabindex="<?php echo $id_int . $tab_count; ?>" data-tab="<?php echo $tab_count; ?>" role="tab">
 					<span class="elementor-toggle-icon">
 						<i class="fa"></i>
 					</span>
 					<?php echo $item['tab_title']; ?>
 				</div>
-				<div class="elementor-toggle-content elementor-clearfix" data-tab="<?php echo $counter; ?>"><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
-			<?php
-				$counter++;
-			endforeach;
-			?>
+				<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+			<?php endforeach; ?>
 		</div>
 		<?php
 	}
@@ -297,6 +326,7 @@ class Widget_Toggle extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
@@ -304,18 +334,28 @@ class Widget_Toggle extends Widget_Base {
 		<div class="elementor-toggle">
 			<#
 			if ( settings.tabs ) {
-				var counter = 1;
-				_.each(settings.tabs, function( item ) { #>
-					<div class="elementor-toggle-title" data-tab="{{ counter }}">
+				var tabindex = view.getIDInt().toString().substr( 0, 3 );
+
+				_.each(settings.tabs, function( item, index ) {
+					var tabCount = index + 1,
+						tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs', index );
+
+					view.addRenderAttribute( tabContentKey, {
+						'class': [ 'elementor-tab-content', 'elementor-clearfix' ],
+						'data-tab': tabCount,
+						'role': 'tabpanel'
+					} );
+
+					view.addInlineEditingAttributes( tabContentKey, 'advanced' );
+					#>
+					<div class="elementor-tab-title" tabindex="{{ tabindex + tabCount }}" data-tab="{{ tabCount }}" role="tab">
 						<span class="elementor-toggle-icon">
 							<i class="fa"></i>
 						</span>
 						{{{ item.tab_title }}}
 					</div>
-					<div class="elementor-toggle-content elementor-clearfix" data-tab="{{ counter }}">{{{ item.tab_content }}}</div>
-				<#
-					counter++;
-				} );
+					<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
+				<# } );
 			} #>
 		</div>
 		<?php

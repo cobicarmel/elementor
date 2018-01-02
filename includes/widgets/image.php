@@ -6,13 +6,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Image Widget
+ * Elementor image widget.
+ *
+ * Elementor widget that displays an image into the page.
+ *
+ * @since 1.0.0
  */
 class Widget_Image extends Widget_Base {
 
 	/**
+	 * Get widget name.
+	 *
 	 * Retrieve image widget name.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget name.
@@ -22,8 +29,11 @@ class Widget_Image extends Widget_Base {
 	}
 
 	/**
+	 * Get widget title.
+	 *
 	 * Retrieve image widget title.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget title.
@@ -33,8 +43,11 @@ class Widget_Image extends Widget_Base {
 	}
 
 	/**
+	 * Get widget icon.
+	 *
 	 * Retrieve image widget icon.
 	 *
+	 * @since 1.0.0
 	 * @access public
 	 *
 	 * @return string Widget icon.
@@ -48,6 +61,7 @@ class Widget_Image extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _register_controls() {
@@ -345,6 +359,7 @@ class Widget_Image extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function render() {
@@ -418,6 +433,7 @@ class Widget_Image extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
+	 * @since 1.0.0
 	 * @access protected
 	 */
 	protected function _content_template() {
@@ -428,7 +444,7 @@ class Widget_Image extends Widget_Base {
 				url: settings.image.url,
 				size: settings.image_size,
 				dimension: settings.image_custom_dimension,
-				model: editModel
+				model: view.getEditModel()
 			};
 
 			var image_url = elementor.imagesManager.getImageUrl( image );
@@ -484,26 +500,27 @@ class Widget_Image extends Widget_Base {
 	/**
 	 * Retrieve image widget link URL.
 	 *
+	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @param object $instance
+	 * @param array $settings
 	 *
 	 * @return array|string|false An array/string containing the link URL, or false if no link.
 	 */
-	private function get_link_url( $instance ) {
-		if ( 'none' === $instance['link_to'] ) {
+	private function get_link_url( $settings ) {
+		if ( 'none' === $settings['link_to'] ) {
 			return false;
 		}
 
-		if ( 'custom' === $instance['link_to'] ) {
-			if ( empty( $instance['link']['url'] ) ) {
+		if ( 'custom' === $settings['link_to'] ) {
+			if ( empty( $settings['link']['url'] ) ) {
 				return false;
 			}
-			return $instance['link'];
+			return $settings['link'];
 		}
 
 		return [
-			'url' => $instance['image']['url'],
+			'url' => $settings['image']['url'],
 		];
 	}
 }

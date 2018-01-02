@@ -97,26 +97,19 @@
 	}
 }
 
-// Saved popup
-#elementor-saved-popup {
+.eicon-nerd {
 
-	.dialog-message {
-		height: 155px;
-		width: 155px;
-		background-color: #fff;
-		border-radius: 10px;
-	}
+	&:hover {
 
-	.elementor-dialog-message {
-		padding: 15px;
-
-		.fa {
-			font-size: 85px;
-			padding: 10px;
+		&:before {
+			content: '\e965';
 		}
 	}
 
-	.elementor-dialog-message-text {
-		text-transform: uppercase;
+	&:active {
+
+		&:before {
+			content: '\e964';
+		}
 	}
 }
