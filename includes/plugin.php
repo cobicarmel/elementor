@@ -7,6 +7,7 @@ use Elementor\Core\Common\App as CommonApp;
 use Elementor\Core\Debug\Inspector;
 use Elementor\Core\Documents_Manager;
 use Elementor\Core\Files\Manager as Files_Manager;
+use Elementor\Core\Interactions\Manager as Interactions_Manager;
 use Elementor\Core\Modules_Manager;
 use Elementor\Core\Settings\Manager as Settings_Manager;
 use Elementor\Core\Settings\Page\Manager as Page_Settings_Manager;
@@ -394,6 +395,11 @@ class Plugin {
 	public $upgrade;
 
 	/**
+	 * @var Interactions_Manager
+	 */
+	public $interactions_manager;
+
+	/**
 	 * Clone.
 	 *
 	 * Disable class cloning and throw an error on object clone.
@@ -526,6 +532,7 @@ class Plugin {
 		$this->role_manager = new Core\RoleManager\Role_Manager();
 		$this->system_info = new System_Info\Main();
 		$this->revisions_manager = new Revisions_Manager();
+		$this->interactions_manager = new Interactions_Manager();
 
 		User::init();
 		Api::init();

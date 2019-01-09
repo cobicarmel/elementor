@@ -66,13 +66,13 @@ class Modules_Manager {
 	 */
 	public function get_modules_names() {
 		return [
+			'dynamic-tags',
+			'gutenberg',
 			'history',
 			'library',
-			'dynamic-tags',
 			'page-templates',
-			'gutenberg',
-			'wp-cli',
 			'safe-mode',
+			'wp-cli',
 		];
 	}
 

@@ -407,4 +407,6 @@ class Widget_Common extends Widget_Base {
 
 		Plugin::$instance->controls_manager->add_custom_css_controls( $this );
 	}
+
+	protected function register_interactions_controls() {}
 }

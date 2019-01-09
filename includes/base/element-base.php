@@ -1,6 +1,8 @@
 <?php
 namespace Elementor;
 
+use Elementor\Core\Interactions\Manager as Interactions_Manager;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -764,6 +766,14 @@ abstract class Element_Base extends Controls_Stack {
 		return '.elementor-element-' . $this->get_id();
 	}
 
+	public function get_interactions_action_groups() {
+		return [ Interactions_Manager::GENERAL_ACTION_GROUP ];
+	}
+
+	public function get_interactions_event_groups() {
+		return [ Interactions_Manager::MOUSE_EVENT_GROUP ];
+	}
+
 	/**
 	 * Render element edit tools.
 	 *
@@ -1003,6 +1013,26 @@ abstract class Element_Base extends Controls_Stack {
 
 			$this->add_child( $child_data );
 		}
+	}
+
+	protected function init_controls() {
+		parent::init_controls();
+
+		$this->register_interactions_controls();
+	}
+
+	protected function register_interactions_controls() {
+		$this->start_controls_section(
+			'section_interactions',
+			[
+				'label' => __( 'Interactions', 'elementor' ),
+				'tab' => Controls_Manager::TAB_ADVANCED,
+			]
+		);
+
+		Plugin::$instance->interactions_manager->register_element_interactions( $this );
+
+		$this->end_controls_section();
 	}
 
 	/**

@@ -826,6 +826,8 @@ class Element_Column extends Element_Base {
 
 		$this->end_controls_section();
 
+		parent::_register_controls();
+
 		Plugin::$instance->controls_manager->add_custom_css_controls( $this );
 	}
 

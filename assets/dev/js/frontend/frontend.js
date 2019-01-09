@@ -1,5 +1,6 @@
 /* global elementorFrontendConfig */
 import DocumentsManager from './documents-manager';
+import InteractionsManager from './interactions/manager';
 import HotKeys from '../../../../core/common/assets/js/utils/hot-keys';
 import Storage from '../../../../core/common/assets/js/utils/storage';
 import environment from '../../../../core/common/assets/js/utils/environment';
@@ -116,6 +117,8 @@ class Frontend extends elementorModules.ViewModule {
 			StretchElement: elementorModules.frontend.tools.StretchElement,
 			Masonry: elementorModules.utils.Masonry,
 		};
+
+		this.interactionsManager = new InteractionsManager();
 
 		this.elementsHandler = new ElementsHandler( jQuery );
 
