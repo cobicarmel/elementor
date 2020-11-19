@@ -43,7 +43,7 @@ class Manager extends Base_Object {
 	 *     @type string $name
 	 *     @type string $title
 	 *     @type string $description
-	 *     @type string $status
+	 *     @type string $release_status
 	 *     @type string $default
 	 * }
 	 *
