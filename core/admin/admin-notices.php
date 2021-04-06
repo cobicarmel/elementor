@@ -158,8 +158,6 @@ class Admin_Notices extends Module {
 		if ( ! in_array( $this->current_screen_id, [ 'toplevel_page_elementor', 'edit-elementor_library', 'elementor_page_elementor-system-info', 'dashboard' ], true ) ) {
 			return false;
 		}
-
-		$notice_id = 'admin_notice_api_' . $admin_notice['notice_id'];
 		if ( User::is_user_notice_viewed( $notice_id ) ) {
 			return false;
 		}
@@ -176,7 +174,7 @@ class Admin_Notices extends Module {
 	}
 
 	private function notice_tracker() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		/*if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
 
@@ -195,7 +193,7 @@ class Admin_Notices extends Module {
 
 		if ( 2 > $this->get_elementor_pages_count() ) {
 			return false;
-		}
+		}*/
 
 		// TODO: Skip for development env.
 		$optin_url = wp_nonce_url( add_query_arg( 'elementor_tracker', 'opt_into' ), 'opt_into' );
@@ -240,7 +238,7 @@ class Admin_Notices extends Module {
 	private function notice_rate_us_feedback() {
 		$notice_id = 'rate_us_feedback';
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		/*if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
 
@@ -250,7 +248,7 @@ class Admin_Notices extends Module {
 
 		if ( 10 >= $this->get_elementor_pages_count() ) {
 			return false;
-		}
+		}*/
 
 		$dismiss_url = add_query_arg( [
 			'action' => 'elementor_set_admin_notice_viewed',
@@ -285,7 +283,7 @@ class Admin_Notices extends Module {
 	private function notice_woocommerce_promote() {
 		$notice_id = 'woocommerce_promote';
 
-		if ( Utils::has_pro() || ! function_exists( 'WC' ) ) {
+		/*if ( Utils::has_pro() || ! function_exists( 'WC' ) ) {
 			return false;
 		}
 
@@ -303,7 +301,7 @@ class Admin_Notices extends Module {
 
 		if ( strtotime( '+24 hours', $this->get_install_time() ) > time() ) {
 			return false;
-		}
+		}*/
 
 		$options = [
 			'title' => __( 'Using WooCommerce?', 'elementor' ),
@@ -326,7 +324,7 @@ class Admin_Notices extends Module {
 	private function notice_cf7_promote() {
 		$notice_id = 'cf7_promote';
 
-		if ( Utils::has_pro() || ! defined( 'WPCF7_VERSION' ) ) {
+		/*if ( Utils::has_pro() || ! defined( 'WPCF7_VERSION' ) ) {
 			return false;
 		}
 
@@ -344,7 +342,7 @@ class Admin_Notices extends Module {
 
 		if ( strtotime( '+24 hours', $this->get_install_time() ) > time() ) {
 			return false;
-		}
+		}*/
 
 		$options = [
 			'title' => __( 'Using Elementor & Contact Form 7?', 'elementor' ),
@@ -367,7 +365,7 @@ class Admin_Notices extends Module {
 	private function notice_mc4wp_promote() {
 		$notice_id = 'mc4wp_promote';
 
-		if ( Utils::has_pro() || ! defined( 'MC4WP_VERSION' ) ) {
+		/*if ( Utils::has_pro() || ! defined( 'MC4WP_VERSION' ) ) {
 			return false;
 		}
 
@@ -385,7 +383,7 @@ class Admin_Notices extends Module {
 
 		if ( strtotime( '+24 hours', $this->get_install_time() ) > time() ) {
 			return false;
-		}
+		}*/
 
 		$options = [
 			'title' => __( 'Want to design better MailChimp forms?', 'elementor' ),
@@ -409,7 +407,7 @@ class Admin_Notices extends Module {
 	private function notice_popup_maker_promote() {
 		$notice_id = 'popup_maker_promote';
 
-		if ( Utils::has_pro() || ! class_exists( 'Popup_Maker' ) ) {
+		/*if ( Utils::has_pro() || ! class_exists( 'Popup_Maker' ) ) {
 			return false;
 		}
 
@@ -427,7 +425,7 @@ class Admin_Notices extends Module {
 
 		if ( strtotime( '+24 hours', $this->get_install_time() ) > time() ) {
 			return false;
-		}
+		}*/
 
 		$options = [
 			'title' => __( 'Using popups on your site?', 'elementor' ),
@@ -451,7 +449,7 @@ class Admin_Notices extends Module {
 	private function notice_role_manager_promote() {
 		$notice_id = 'role_manager_promote';
 
-		if ( Utils::has_pro() ) {
+		/*if ( Utils::has_pro() ) {
 			return false;
 		}
 
@@ -461,7 +459,7 @@ class Admin_Notices extends Module {
 
 		if ( 'elementor_page_elementor-role-manager' !== $this->current_screen_id || User::is_user_notice_viewed( $notice_id ) ) {
 			return false;
-		}
+		}*/
 
 		$users = new \WP_User_Query( [
 			'fields' => 'ID',
@@ -469,7 +467,7 @@ class Admin_Notices extends Module {
 		] );
 
 		if ( 5 > $users->get_total() ) {
-			return false;
+//			return false;
 		}
 
 		$options = [
@@ -574,7 +572,7 @@ class Admin_Notices extends Module {
 		foreach ( $this->plain_notices as $notice ) {
 			$method_callback = "notice_{$notice}";
 			if ( $this->$method_callback() ) {
-				return;
+//				return;
 			}
 		}
 
